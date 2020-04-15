@@ -3,6 +3,8 @@ class Review < ApplicationRecord
 
   validates :content, :rating, presence: true
 
+  validates :content, length: { minimum: 5 }
+
   validates :rating,
             numericality: true,
             inclusion: {

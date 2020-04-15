@@ -4,7 +4,14 @@
       <article>
         <h3 class="d-flex justify-content-between">
           <%= link_to "#{restaurant.name}", restaurant_path(restaurant) %>
-          <%= '⭐' * (1..5).to_a.sample %>
+          <span class="d-flex">
+            <%= '⭐' * Review.where(restaurant_id: restaurant.id)
+                             .average(:rating)
+                             .to_f
+            %>
+            <%= link_to 'Review', new_restaurant_review_path(restaurant),
+              class: 'btn btn-primary', style: 'margin-left: 16px' %>
+          </span>
         </h3>
         <hr>
       </article>

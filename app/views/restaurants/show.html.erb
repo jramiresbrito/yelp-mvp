@@ -1,7 +1,14 @@
-<h1><%= @restaurant.name %></h1>
+<h1 class="text-center mb-4"><%= @restaurant.name %></h1>
 <h4><strong>Category: </strong><%= @restaurant.category %></h4>
 <h4><strong>Address: </strong><%= @restaurant.address %></h4>
 <h4><strong>Phone Number: </strong><%= @restaurant.phone_number %></h4>
-<%= link_to 'New Review', new_restaurant_review_path(@restaurant), class: 'btn btn-primary' %>
 <hr>
-<h3>REVIEWS</h3>
+<h2 class="text-center mb-4">Reviews</h2>
+<ul class="list-group">
+  <% @restaurant.reviews.each do |review| %>
+    <li class="list-group-item d-flex justify-content-between">
+      <span><%= review.content %></span>
+      <span><%= '⭐' * review.rating %></span>
+      </li>
+  <% end %>
+</ul>
